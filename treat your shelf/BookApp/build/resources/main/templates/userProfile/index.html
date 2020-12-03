@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1>Treat Your Shelf</h1>
+
+<header th:replace="fragments :: header"></header>
+
+<h2 th:text="${username}" >should be the username</h2>
+
+<h3 th:text="${communication}">should be mode of email</h3>
+
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="/books/add">add a book!</a></li>
+</ul>
+
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="/update">Update Profile</a></li>
+</ul>
+
+
+<!--        <div class="form-group">-->
+<!--            <label th:for="genre">Genre</label>-->
+<!--            <select name="genreID">-->
+<!--                <option th:each="genre : ${genres}"-->
+<!--                        th:text="${genre.name}">-->
+
+<!--                </option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+</body>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container  body-content">
+<h1>Add Book</h1>
+
+<header th:replace="fragments :: header"></header>
+
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="title">Book Title</label>
+        <input class="form-control" th:field="${bookFormDTO.title}" />
+        <span th:errors="${bookFormDTO.title}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="author">Book Author</label>
+        <input class="form-control" th:field="${bookFormDTO.author}" />
+        <span th:errors="${bookFormDTO.author}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="genre">Book genre</label>
+        <input class="form-control" th:field="${bookFormDTO.genre}" />
+        <span th:errors="${bookFormDTO.genre}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Book" />
+</form>
+
+</body>
+</html>

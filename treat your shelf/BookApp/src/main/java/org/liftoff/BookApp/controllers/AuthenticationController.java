@@ -77,13 +77,12 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getCommunication() );
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getCommunication());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
     }
-
 
 
     @GetMapping("/login")
@@ -125,10 +124,9 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:";
     }
 
 }
-

@@ -19,17 +19,28 @@ public class User extends AbstractEntity {
     @Email
     private String communication;
 
+    @NotNull
+    private String location;
+
 
 
 
 
     public User() {}
 
-    public User(String username, String password,String communication) {
+    public User(String username, String password,String communication,String location) {
         this.username = username;
         this.pwHash = encoder.encode(password);
         this.communication = communication;
+        this.location = location;
+    }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getUsername() {

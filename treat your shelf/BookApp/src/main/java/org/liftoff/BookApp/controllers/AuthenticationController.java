@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +26,8 @@ public class AuthenticationController {
     UserRepository userRepository;
 
     private static final String userSessionKey = "user";
+
+    ArrayList<String> states = new ArrayList<>(Arrays.asList("Alabama", "Alaska", "Arizona", "American Samoa", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District Of Columbia", "Federated States Of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"));
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -48,6 +52,7 @@ public class AuthenticationController {
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
+        model.addAttribute("states", states);
         return "register";
     }
 
@@ -60,6 +65,7 @@ public class AuthenticationController {
             model.addAttribute("title", "Register");
             return "register";
         }
+
 
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
 
@@ -77,13 +83,12 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getCommunication() );
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getCommunication(), registerFormDTO.getLocation());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";
     }
-
 
 
     @GetMapping("/login")
@@ -125,7 +130,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:";
     }

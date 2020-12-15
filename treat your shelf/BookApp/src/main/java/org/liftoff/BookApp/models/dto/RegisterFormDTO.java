@@ -13,6 +13,18 @@ public class RegisterFormDTO extends LoginFormDTO {
     @Email
     private String communication;
 
+    @NotNull
+    @NotBlank
+    private String location;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public String getCommunication() {
         return communication;
     }

@@ -8,16 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebApplicationConfig implements WebMvcConfigurer {
 
-
     @Bean
     public AuthenticationFilter authenticationFilter() {
         return new AuthenticationFilter();
     }
 
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor( authenticationFilter() );
+        registry.addInterceptor(authenticationFilter());
     }
 
 }

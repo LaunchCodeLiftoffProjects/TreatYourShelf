@@ -66,7 +66,6 @@ public class AuthenticationController {
             return "register";
         }
 
-
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
 
         if (existingUser != null) {

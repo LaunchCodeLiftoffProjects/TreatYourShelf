@@ -32,4 +32,5 @@ public class UpdateFormDTO {
     public void setCommunication(String communication) {
         this.communication = communication;
     }
+
 }

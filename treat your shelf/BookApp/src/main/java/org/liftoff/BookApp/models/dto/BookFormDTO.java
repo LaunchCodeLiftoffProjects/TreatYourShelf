@@ -40,4 +40,5 @@ public class BookFormDTO {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
 }

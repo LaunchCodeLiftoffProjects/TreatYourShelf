@@ -1,10 +1,15 @@
 package org.liftoff.BookApp.models;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Book extends AbstractEntity {
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+    @SequenceGenerator(name = "book_seq", sequenceName = "book_seq", initialValue = 1, allocationSize = 1)
+    private int id;
 
     @NotNull
     private String title;
@@ -15,9 +20,10 @@ public class Book extends AbstractEntity {
     @NotNull
     private String genre;
 
-    public Book(){}
+    public Book() {
+    }
 
-    public Book(String title,String author,String genre) {
+    public Book(String title, String author, String genre) {
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -34,4 +40,9 @@ public class Book extends AbstractEntity {
     public String getAuthor() {
         return author;
     }
+
+    public int getId() {
+        return id;
+    }
+
 }

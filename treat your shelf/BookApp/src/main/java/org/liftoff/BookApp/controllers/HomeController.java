@@ -1,9 +1,9 @@
 package org.liftoff.BookApp.controllers;
 
+import org.liftoff.BookApp.data.BookOwnerRepository;
 import org.liftoff.BookApp.data.BookRepository;
 import org.liftoff.BookApp.data.UserRepository;
 import org.liftoff.BookApp.models.User;
-import org.liftoff.BookApp.models.dto.RegisterFormDTO;
 import org.liftoff.BookApp.models.dto.UpdateFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,21 +30,24 @@ public class HomeController {
     @Autowired
     BookRepository bookRepository;
 
+    @Autowired
+    BookOwnerRepository bookOwnerRepository;
 
 
     public HomeController() {
     }
 
     @RequestMapping({""})
-    public String index(Model model,HttpServletRequest request) {
+    public String index(Model model, HttpServletRequest request) {
         model.addAttribute("title", "Treat Your Shelf!");
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
-        if (user == null){
-            model.addAttribute("loginstatus","");
-        }else{
-            model.addAttribute("loginstatus",user.getUsername());
+        if (user == null) {
+            model.addAttribute("loginstatus", "");
+        } else {
+            model.addAttribute("loginstatus", user.getUsername());
         }
+        model.addAttribute("books", bookRepository.findAll());
         return "index";
     }
 
@@ -53,15 +56,15 @@ public class HomeController {
         model.addAttribute("title", "Profile");
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
-        model.addAttribute("username",user.getUsername());
-        model.addAttribute("communication",user.getCommunication());
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("communication", user.getCommunication());
         return "userProfile/index";
     }
 
     @GetMapping("/update")
     public String displayUpdateForm(Model model) {
         model.addAttribute(new UpdateFormDTO());
-        model.addAttribute("title","Update Profile");
+        model.addAttribute("title", "Update Profile");
         return "update";
     }
 
@@ -87,9 +90,5 @@ public class HomeController {
 
         return "userProfile/index";
     }
-
-
-
-
 
 }

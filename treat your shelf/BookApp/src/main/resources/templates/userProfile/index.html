@@ -19,14 +19,12 @@
     <li class="nav-item"><a class="nav-link" href="/update">Update Profile</a></li>
 </ul>
 
-<!--this section needs to be updated to include only the books listed by specified user-->
-
-<!--<h2>Listed Books</h2>-->
-<!--<ul>-->
-<!--    <li th:each="book : ${books}">-->
-<!--        <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>-->
-<!--    </li>-->
-<!--</ul>-->
+<h2>Listed Books</h2>
+<ul>
+    <li th:each="book : ${books}">
+        <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
+    </li>
+</ul>
 
 
 <!--        <div class="form-group">-->

@@ -3,6 +3,7 @@ package org.liftoff.BookApp.controllers;
 import org.liftoff.BookApp.data.BookOwnerRepository;
 import org.liftoff.BookApp.data.BookRepository;
 import org.liftoff.BookApp.data.UserRepository;
+import org.liftoff.BookApp.models.BookOwner;
 import org.liftoff.BookApp.models.User;
 import org.liftoff.BookApp.models.dto.UpdateFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -58,6 +61,17 @@ public class HomeController {
         User user = authenticationController.getUserFromSession(session);
         model.addAttribute("username", user.getUsername());
         model.addAttribute("communication", user.getCommunication());
+
+        // get the bookOwner from bookOwner repo using active user id
+        List<BookOwner> bookOwnerByUserId = bookOwnerRepository.findByUserId(user.getId());
+        List<Integer> bookIds = new ArrayList<>();
+
+        // get only book ids from bookOwner and add it to the list 'bookIds'
+        for (BookOwner bookOwner : bookOwnerByUserId) {
+            bookIds.add(bookOwner.getBookId());
+        }
+
+        model.addAttribute("books", bookRepository.findByIdIn(bookIds));
         return "userProfile/index";
     }
 

@@ -19,6 +19,13 @@
     <li class="nav-item"><a class="nav-link" href="/update">Update Profile</a></li>
 </ul>
 
+<h2>Listed Books</h2>
+<ul>
+    <li th:each="book : ${books}">
+        <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
+    </li>
+</ul>
+
 
 <!--        <div class="form-group">-->
 <!--            <label th:for="genre">Genre</label>-->

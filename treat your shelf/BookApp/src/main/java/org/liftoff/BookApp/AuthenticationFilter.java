@@ -4,6 +4,7 @@ import org.liftoff.BookApp.controllers.AuthenticationController;
 import org.liftoff.BookApp.data.UserRepository;
 import org.liftoff.BookApp.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

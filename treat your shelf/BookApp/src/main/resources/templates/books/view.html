@@ -11,6 +11,9 @@
     <p th:text="${'Title: ' + book.title}"></p>
     <p th:text="${'Author: ' + book.author}"></p>
     <p th:text="${'Genre: ' + book.genre}"></p>
+    <form th:action="@{'/books/view/' + ${book.id}}" method="post" name="book" value="${book.id}">
+        <input type="submit" value="Pull from shelf" onclick="return confirm('Confirm to send book request')"/>
+    </form>
 </div>
 
 </body>

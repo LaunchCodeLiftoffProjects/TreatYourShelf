@@ -1,5 +1,6 @@
 package org.liftoff.BookApp.controllers;
 
+import org.dom4j.rule.Mode;
 import org.liftoff.BookApp.data.BookOwnerRepository;
 import org.liftoff.BookApp.data.BookRepository;
 import org.liftoff.BookApp.models.Book;
@@ -66,6 +67,7 @@ public class BookController {
         }
     }
 
+
     @GetMapping({"view/{bookId}"})
     public String displayViewBook(Model model, @PathVariable int bookId) {
         Optional optBook = this.bookRepository.findById(bookId);
@@ -76,6 +78,17 @@ public class BookController {
         } else {
             return "redirect:../";
         }
+    }
+
+    @RequestMapping(value = "view/{bookId}", method = RequestMethod.POST)
+    public String deleteBook(@PathVariable int bookId, Model model) {
+        Optional optBook = this.bookRepository.findById(bookId);
+        if (optBook.isPresent()) {
+            Book book = (Book) optBook.get();
+            model.addAttribute("book", book);
+            bookRepository.delete(book);
+        }
+        return "redirect:../";
     }
 
 }

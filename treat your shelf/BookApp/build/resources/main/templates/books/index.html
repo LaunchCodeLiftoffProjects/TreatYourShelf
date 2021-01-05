@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
 
 <header th:replace="fragments :: header"></header>
 
 <p th:unless="${books} and ${books.size()}">no books!</p>
 
 <div class="container body-content">
-    <h2>Books</h2>
+    <h2>List of Books ready to lend!</h2>
     <ul>
         <li th:each="book : ${books}">
             <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
         </li>
     </ul>
-    <a th:href="@{'/employers/add'}">Add Books</a>
+    <a th:href="@{'/books/add'}">Add more Books!</a>
 
 </div>
 

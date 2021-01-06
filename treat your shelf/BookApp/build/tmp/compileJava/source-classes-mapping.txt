@@ -10,8 +10,8 @@ org/liftoff/BookApp/models/dto/BookFormDTO.java
  org.liftoff.BookApp.models.dto.BookFormDTO
 org/liftoff/BookApp/models/dto/LoginFormDTO.java
  org.liftoff.BookApp.models.dto.LoginFormDTO
-org/liftoff/BookApp/controllers/HomeController.java
- org.liftoff.BookApp.controllers.HomeController
+org/liftoff/BookApp/controllers/BookController.java
+ org.liftoff.BookApp.controllers.BookController
 org/liftoff/BookApp/controllers/AuthenticationController.java
  org.liftoff.BookApp.controllers.AuthenticationController
 org/liftoff/BookApp/data/BookOwnerRepository.java
@@ -22,11 +22,13 @@ org/liftoff/BookApp/BookAppApplication.java
  org.liftoff.BookApp.BookAppApplication
 org/liftoff/BookApp/models/User.java
  org.liftoff.BookApp.models.User
-org/liftoff/BookApp/AuthenticationFilter.java
- org.liftoff.BookApp.AuthenticationFilter
+org/liftoff/BookApp/controllers/HomeController.java
+ org.liftoff.BookApp.controllers.HomeController
 org/liftoff/BookApp/models/BookOwner.java
  org.liftoff.BookApp.models.BookOwner
 org/liftoff/BookApp/WebApplicationConfig.java
  org.liftoff.BookApp.WebApplicationConfig
-org/liftoff/BookApp/controllers/BookController.java
- org.liftoff.BookApp.controllers.BookController
+org/liftoff/BookApp/AuthenticationFilter.java
+ org.liftoff.BookApp.AuthenticationFilter
+org/liftoff/BookApp/controllers/SearchController.java
+ org.liftoff.BookApp.controllers.SearchController

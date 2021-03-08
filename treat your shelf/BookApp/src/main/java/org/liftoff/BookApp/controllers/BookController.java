@@ -1,6 +1,5 @@
 package org.liftoff.BookApp.controllers;
 
-import org.dom4j.rule.Mode;
 import org.liftoff.BookApp.data.BookOwnerRepository;
 import org.liftoff.BookApp.data.BookRepository;
 import org.liftoff.BookApp.models.Book;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -39,6 +39,7 @@ public class BookController {
         model.addAttribute("books", bookRepository.findAll());
         return "books/index";
     }
+
 
     @GetMapping({"add"})
     public String displayAddBookForm(Model model) {

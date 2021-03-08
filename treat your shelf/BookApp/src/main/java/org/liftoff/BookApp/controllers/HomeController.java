@@ -3,6 +3,7 @@ package org.liftoff.BookApp.controllers;
 import org.liftoff.BookApp.data.BookOwnerRepository;
 import org.liftoff.BookApp.data.BookRepository;
 import org.liftoff.BookApp.data.UserRepository;
+import org.liftoff.BookApp.models.Book;
 import org.liftoff.BookApp.models.BookOwner;
 import org.liftoff.BookApp.models.User;
 import org.liftoff.BookApp.models.dto.UpdateFormDTO;
@@ -10,16 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -51,6 +50,17 @@ public class HomeController {
             model.addAttribute("loginstatus", user.getUsername());
         }
         model.addAttribute("books", bookRepository.findAll());
+
+//        ArrayList<Optional<Book>> recent = new ArrayList();
+//        for(int i = 0; i < bookRepository.count(); i++) {
+//            recent.add(bookRepository.findById(i));
+//            if(recent.size() > 5) {
+//                recent.remove(i-i);
+//                recent.add(bookRepository.findById(i));
+//            }
+//        }
+//        model.addAttribute("books", recent);
+
         return "index";
     }
 
@@ -74,6 +84,7 @@ public class HomeController {
         model.addAttribute("books", bookRepository.findByIdIn(bookIds));
         return "userProfile/index";
     }
+
 
     @GetMapping("/update")
     public String displayUpdateForm(Model model) {
